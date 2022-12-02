@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+	//- Vars
+	block sharedVars
+	//- Head
+	head
+		title #{pageTitle}
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		//- connect scripts/styles
+		<%= htmlWebpackPlugin.tags.headTags %>
+
+	body(class=`${bodyAdditionClass}`)
+		img(src="~@/img/pug-logo.png" style="width: 50px; height: 50px; position: absolute; top: 0; right: 0;")
+		p(style="position: absolute; top: 50px; right: 10px;") layout init
+		include components/header
+		main(class=`${pageAdditionClass}`)
+			block content
+		include components/footer
+

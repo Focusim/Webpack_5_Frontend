@@ -1,0 +1,12 @@
+// Main
+@import '../vars';
+@import '../mixins';
+
+body {
+	content: 'this style page next';
+	background: #340808;
+}
+
+.container {
+	@include container;
+}

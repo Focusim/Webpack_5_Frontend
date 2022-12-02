@@ -1,0 +1,11 @@
+// Main
+@import '../vars';
+@import '../mixins';
+
+body {
+	content: 'this style page index';
+}
+
+.container {
+	@include container;
+}

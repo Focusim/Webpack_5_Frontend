@@ -1,0 +1,27 @@
+# Setting IDE
+.idea
+.vscode
+
+# Node
+node_modules
+
+# Temp
+main.temp.js
+
+# Build
+build
+npm/build
+
+# FTP
+.ftp
+
+# logs
+*.log
+
+# Trash folders
+Thumbs.db
+Desktop.ini
+.DS_Store*
+ehthumbs.db
+Icon?
+package-lock.json

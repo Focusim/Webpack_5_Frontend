@@ -1,0 +1,22 @@
+// Plugins
+@import '~normalize.css';
+
+// Variables and mixin
+@import 'vars';
+@import 'mixins';
+
+// Global
+@import 'global/fonts';
+@import 'global/basic';
+
+// Main
+@import 'components/header';
+@import 'components/footer';
+
+// Common
+@import 'common/animation';
+
+body {
+	color: $color-white;
+}
+
