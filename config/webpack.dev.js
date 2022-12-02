@@ -14,7 +14,7 @@ module.exports = merge(common, {
 		filename: `${common.externals.paths.assets.scripts}/[name].js`,
 	},
 	devServer: {
-		open: ['base.html'],
+		open: ['/'],
 		hot: true,
 		historyApiFallback: true,
 		compress: true,
