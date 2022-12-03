@@ -1,3 +1,16 @@
 header.header
 	.container
-		h1 Header init
+		.header__inner
+			a.logo(href="/")
+				img(src="~@/img/logo_mindbox.svg")
+			.nav
+				ul.nav__list
+					li.nav__item
+						a.nav__item-link.nav__item-link--active(href="#") Campaigns
+					li.nav__item
+						a.nav__item-link(href="#") Why us
+					li.nav__item
+						a.nav__item-link(href="#") Experience
+					li.nav__item
+						a.nav__item-link(href="#") Launch in USA
+			a.btn(href="#") Talk to founder

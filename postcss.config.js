@@ -20,6 +20,10 @@ module.exports = {
 		// 	indentSize: 2,
 		// },
 		} : {
+			'postcss-px-to-viewport': {
+				// options
+				viewportWidth: 1280,
+			},
 			'postcss-preset-env': {
 				browsers: 'last 3 versions',
 			},

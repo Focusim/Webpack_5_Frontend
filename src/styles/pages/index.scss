@@ -1,11 +1,21 @@
 // Main
 @import '../vars';
 @import '../mixins';
+@import '../blocks/head';
 
 body {
 	content: 'this style page index';
+	background: #222120;
 }
 
 .container {
 	@include container;
+}
+
+h1 {
+	font-size: 70px;
+	font-weight: 500;
+	line-height: 70px;
+	letter-spacing: -0.02em;
+	text-align: center;
 }

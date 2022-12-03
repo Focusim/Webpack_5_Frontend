@@ -1,3 +1,86 @@
-header.header {
-	color: red;
+.header {
+	position: fixed;
+	width: 100%;
+	background: rgba(34, 33, 32, 0.1);
+	backdrop-filter: blur(20px);
+	height: 64px;
+	display: flex;
+	align-items: center;
+
+	&__inner {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.logo {
+		height: 23px;
+		width: 119px;
+
+		svg {
+			height: 23px;
+			width: 119px;
+		}
+	}
+
+	.nav {
+
+		&__list {
+			display: flex;
+			justify-content: space-between;
+			column-gap: 10px;
+		}
+
+		&__item {
+
+		}
+
+		&__item-link {
+			position: relative;
+			font-size: 12px;
+			font-weight: 400;
+			line-height: 14px;
+			letter-spacing: 0;
+			color: $color-white;
+			opacity: 0.5;
+			padding: 0 0 0 18px;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+
+		&__item-link--active {
+			opacity: 1;
+
+			&::before {
+				content: '';
+				position: absolute;
+				height: 10px;
+				width: 10px;
+				left: 0;
+				top: 2px;
+				border-radius: 50%;
+				background: #39AA5D;
+			}
+		}
+	}
+
+	.btn {
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 16px;
+		letter-spacing: 0;
+		color: $color-white;
+		white-space: nowrap;
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		background: #39AA5D;
+		border-radius: 12px;
+		padding: 12px 24px;
+		width: 146px;
+		height: 40px;
+	}
 }
