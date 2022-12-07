@@ -2,10 +2,15 @@
 @import '../vars';
 @import '../mixins';
 @import '../blocks/head';
+@import '../blocks/launch-more';
 
 body {
 	content: 'this style page index';
 	background: #222120;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 .container {

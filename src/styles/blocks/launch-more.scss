@@ -1,0 +1,29 @@
+.launch-more {
+	overflow: hidden;
+	background: #DEDDD9;
+	padding: 220px 0 187px 0;
+
+	&__inner {
+		margin: 0 0 80px 0;
+	}
+
+	&__title {
+		width: 100%;
+		max-width: 726px;
+		color: #333231;
+		text-align: center;
+		margin: 0 auto 40px auto;
+	}
+
+	&__description {
+		font-size: 22px;
+		font-weight: 400;
+		line-height: 29px;
+		letter-spacing: 0;
+		color: #333231;
+		text-align: center;
+		width: 100%;
+		max-width: 578px;
+		margin: 0 auto;
+	}
+}

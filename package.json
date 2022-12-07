@@ -14,7 +14,7 @@
 		"utils:clean": "node ./utils/clean",
 		"utils:entry": "node ./utils/entry",
 		"temp": "node ./config/temp.js TEMP=true",
-		"serv": "npm run utils:entry --silent && npm run temp --silent && cross-env NODE_ENV=development webpack serve --config ./config/webpack.dev.js",
+		"serve": "npm run utils:entry --silent && npm run temp --silent && cross-env NODE_ENV=development webpack serve --config ./config/webpack.dev.js",
 		"dist": "npm run utils:entry --silent && npm run temp --silent && cross-env NODE_ENV=development webpack --config ./config/webpack.dev.js",
 		"build": "npm run utils:entry --silent && npm run temp --silent && cross-env NODE_ENV=production PRETTY_HTML=false webpack --config ./config/webpack.prod.js"
 	},
