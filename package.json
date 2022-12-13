@@ -1,7 +1,7 @@
 {
 	"name": "webpack-5-frontend",
 	"version": "1.0.2",
-	"description": "Webpack 5 | VUE 3 | REACT | SCSS | PUG | TWIG | HTML | SwiperJS | postcss-px-to-viewport",
+	"description": "Webpack 5 | VUE 3 | REACT | SCSS | PUG | TWIG | HTML | SwiperJS | postcss-px-to-viewport | lottie",
 	"author": {
 		"name": "RomanG",
 		"email": "r.garanin@intensa.ru"
