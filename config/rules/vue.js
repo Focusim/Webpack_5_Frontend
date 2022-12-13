@@ -5,5 +5,9 @@ module.exports = {
 		loader: {
 			scss: 'vue-style-loader!css-loader!sass-loader',
 		},
+		cacheBusting: false, // true by default (:
+		compilerOptions: {
+			vLottiePlayer:  (tag) => tag === "lottie-player",
+		},
 	},
 };

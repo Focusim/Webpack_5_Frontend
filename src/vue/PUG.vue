@@ -5,6 +5,7 @@ section.vue
 </template>
 
 <script>
+
 export default {
 	name: 'vue-pug',
 	data() {

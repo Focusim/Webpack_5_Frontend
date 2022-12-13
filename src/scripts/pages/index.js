@@ -1,14 +1,26 @@
-console.log('pages/index.js');
-
 //
 // Vue Init:
 //
 import { createApp } from 'vue';
 import SwiperSlider from '@/vue/swiper-slider.vue';
+import lottieVue from "@/vue/lottie-vue.vue";
 
+//
+// slider
+//
 const AppSelector = document.querySelector('#swiper-slider');
-
 if (AppSelector) createApp(SwiperSlider).mount(AppSelector);
+
+//
+// lottie
+//
+const LottieSelector = document.querySelector('#lottie-vue');
+if (LottieSelector) createApp(lottieVue).mount(LottieSelector);
+
+
+
+
+
 
 (function () {
 	const elem = document.querySelector('#swiper-slider');
