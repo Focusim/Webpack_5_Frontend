@@ -5,7 +5,7 @@ module.exports = {
 			resourceQuery: /^\?vue/,
 			use: [
 				{
-					loader: '@uvarov.frontend/pug-bem-plain-loader',
+					loader: 'pug-bem-plain-loader',
 					options: {
 						b: true,
 					},
@@ -25,7 +25,7 @@ module.exports = {
 					},
 				},
 				{
-					loader: '@uvarov.frontend/pug-bem-plain-loader',
+					loader: 'pug-bem-plain-loader',
 					options: {
 						b: true,
 					},
