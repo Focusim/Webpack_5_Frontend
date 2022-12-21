@@ -11,8 +11,7 @@ html(lang="en")
 		<%= htmlWebpackPlugin.tags.headTags %>
 
 	body(class=`${bodyAdditionClass}`)
-		include components/header
+
 		main(class=`${pageAdditionClass}`)
 			block content
-		include components/footer
 

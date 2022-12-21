@@ -1,8 +1,8 @@
 // Main
 @import '../vars';
 @import '../mixins';
-@import '../blocks/head';
-@import '../blocks/launch-more';
+@import '../components/main/head';
+@import '../components/main/launch-more';
 
 body {
 	content: 'this style page index';

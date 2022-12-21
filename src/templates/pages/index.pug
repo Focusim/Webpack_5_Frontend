@@ -2,10 +2,10 @@ extends ../layout
 
 append sharedVars
 	- const pageUrl = '/';
-	- const pageTitle = 'Page Title';
+	- const pageTitle = 'Index';
 	- const bodyAdditionClass = '';
 	- const pageAdditionClass = 'index-page';
 
 block content
-	include ../blocks/head
-	include ../blocks/swiper-slider
+	include ../components/index/head
+	include ../components/index/swiper-slider
