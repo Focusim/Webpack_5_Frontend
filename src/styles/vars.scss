@@ -1,6 +1,27 @@
 // colors
 $color-white: #ffffff;
-$color-black: #000000;
+$color-black: #0C0D10;
+$color-dark: #292B32;
+$color-light-blue: #99A2B9;
+$color-dark-blue-3: #15161B;
+$color-dark-blue-2: #1E1F24;
+$color-dark-blue-1: #212329;
+$color-dark-blue-0: #282A30;
+$color-light-gray-2: #B4BECA;
+$color-light-gray-1: #D2D8DE;
+$color-light-gray: #E8EBEE;
+$color-bright-gray: #F0F3F6;
+
+$color-el-lines: #464756;
+$color-el-icons-blue: #8C9AAC;
+$color-el-dark-green: #268644;
+$color-el-green: #39AA5D;
+$color-el-light-green: #55C579;
+$color-el-bright-green: #9AE1AA;
+
+// media
+$media-tablet: 'max-width: 768px';
+$media-mobile: 'max-width: 500px';
 
 // fonts
 @import url("https://mindbox.ru/journal/wp-content/themes/minboxtheme/assets/fonts/CoFo/stylesheet.css?ver=5.4.1");

@@ -1,12 +1,16 @@
 // container template
 @mixin container() {
-	max-width: 1200px;
+	max-width: 1280px;
 	width: 100%;
-	padding: 0 20px;
+	padding: 0 40px;
 	margin: 0 auto;
 
-	@media (max-width: 1100px) {
-		padding: 0 15px;
+	@media ($media-tablet) {
+		padding: 0 30px;
+	}
+
+	@media ($media-mobile) {
+		padding: 0 20px;
 	}
 }
 

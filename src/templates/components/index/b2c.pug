@@ -1,0 +1,51 @@
+block b2c
+	.b2c
+		.container
+			.b2c__inner
+				h2.b2c__title For customer-centric B2C business
+				p.b2c__description Mindbox is&nbsp;new in&nbsp;the U.S., but our software has already proven its&nbsp;efficiency on&nbsp;global markets. The best results achieved by&nbsp;B2C companies demonstrated up&nbsp;to&nbsp;25% added revenue.
+			.sphere
+				ul.sphere__list
+					mixin sphere__list-item(image, text, value, mod)
+						li.sphere__list-item(class=mod)
+							img.sphere__list-icon(src=('~@/img/index/b2c/' + image) alt=image)
+							.sphere__list-text=text
+							.sphere__list-value=value
+
+					+sphere__list-item('auto-logistics.svg', 'Auto & Logistics', '+12%')
+					+sphere__list-item('beauty.svg', 'Beauty', '+25%')
+					+sphere__list-item('books.svg', 'Books', '+21%')
+					+sphere__list-item('electronics.svg', 'Electronics ', '+8%')
+					+sphere__list-item('fashion.svg', 'Fashion ', '+24%')
+					+sphere__list-item('furniture.svg', 'Furniture ', '+11%')
+					+sphere__list-item('jewelry.svg', 'Jewelry ', '+15%')
+					+sphere__list-item('kids-stores.svg', 'Kids stores ', '+7.6%')
+					+sphere__list-item('property-development.svg', 'Property & Development ', '+1.1%')
+					+sphere__list-item('sport-fitness.svg', 'Sport & Fitness ', '+14.2%', 'sphere__list-item--100')
+					+sphere__list-item('tourism-leisure.svg', 'Tourism & Leisure ', '+14.8%')
+			.date-ga
+				img.date-ga__img(src="~@/img/index/b2c/ga.svg" alt="Google Analytics")
+				.date-ga__text Added revenue associated with email campaigns based on&nbsp;Google Analytics data
+		.hr
+		.container
+			.partners
+				.partners__inner
+					ul.partners__list
+						mixin partners__list-item(image, alt)
+							li.partners__list-item
+								img.partners__list-img(src=("~@/img/index/b2c/partners/" + image) alt=alt)
+						+partners__list-item('logo-panasonic.svg', 'panasonic')
+						+partners__list-item('logo-burger-king.svg', 'burger-king.svg')
+						+partners__list-item('logo-metro.svg', 'metro')
+						+partners__list-item('logo-kfc.svg', 'kfc')
+						+partners__list-item('logo-underarmour.svg', 'underarmour')
+						+partners__list-item('logo-birkenstock.svg', 'birkenstock')
+						+partners__list-item('logo-incanto.svg', 'incanto')
+					ul.partners__list
+						+partners__list-item('logo-mothercareby.svg', 'mothercareby')
+						+partners__list-item('logo-jbl.svg', 'jbl')
+						+partners__list-item('logo-nespresso.svg', 'nespresso')
+						+partners__list-item('logo-crocs.svg', 'crocs')
+						+partners__list-item('logo-gap.svg', 'gap')
+						+partners__list-item('logo-quicksilver.svg', 'quicksilver')
+						+partners__list-item('logo-oriflame.svg', 'oriflame')

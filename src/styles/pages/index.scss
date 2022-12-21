@@ -1,26 +1,5 @@
-// Main
-@import '../vars';
-@import '../mixins';
-@import '../components/main/head';
-@import '../components/main/launch-more';
+@import '../components/main/index';
 
-body {
-	content: 'this style page index';
-	background: #222120;
-
-	&::-webkit-scrollbar {
-		display: none;
-	}
-}
-
-.container {
-	@include container;
-}
-
-h1 {
-	font-size: 70px;
-	font-weight: 500;
-	line-height: 70px;
-	letter-spacing: -0.02em;
-	text-align: center;
+@media (min-width: 1281px) {
+	@import '../components/main/index';
 }

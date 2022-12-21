@@ -1,0 +1,47 @@
+// Main
+@import '../../vars';
+@import '../../mixins';
+@import 'header';
+@import 'head';
+@import 'premium';
+@import 'launch-more';
+@import 'roadmap';
+@import 'b2c';
+@import 'footer';
+
+body {
+	content: 'this style page index';
+	background: $color-bright-gray;
+
+	&.burger-menu--open {
+
+		header.header .nav {
+			@media ($media-tablet) {
+				transform: translateX(0%);
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.container {
+	@include container;
+}
+
+h1 {
+	font-size: 70px;
+	font-weight: 480;
+	line-height: 70px;
+	letter-spacing: -0.04em;
+	text-align: left;
+	font-variation-settings: 'slnt' 0;
+}
+
+h2 {
+	font-size: 50px;
+	font-weight: 480;
+	line-height: 50px;
+	letter-spacing: -0.02em;
+	text-align: left;
+	font-variation-settings: 'slnt' 0;
+}

@@ -1,16 +1,24 @@
 header.header
 	.container
 		.header__inner
+			.burger(data-burger-btn)
+				img(src="~@/img/burger.svg")
 			a.logo(href="/")
-				img(src="~@/img/logo_mindbox.svg")
-			.nav
+				img(src="~@/img/logo_mindbox-black.svg")
+			nav.nav
 				ul.nav__list
+					li.nav__item.nav__item--close(data-burger-btn)
+						img(src="~@/img/burger-close.svg")
 					li.nav__item
 						a.nav__item-link.nav__item-link--active(href="#") Campaigns
 					li.nav__item
-						a.nav__item-link(href="#") Why us
+						a.nav__item-link(href="#") Roadmap
 					li.nav__item
-						a.nav__item-link(href="#") Experience
+						a.nav__item-link(href="#") Revenue
+					li.nav__item
+						a.nav__item-link(href="#") Clients
+					li.nav__item
+						a.nav__item-link(href="#") All-in-one
 					li.nav__item
 						a.nav__item-link(href="#") Launch in USA
 			a.btn(href="#") Talk to founder
