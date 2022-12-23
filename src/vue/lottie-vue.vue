@@ -1,16 +1,16 @@
 <template lang="pug">
 div
 	lottie-player(
-		:src="`https://assets10.lottiefiles.com/packages/lf20_tzjfwgud.json`"
+		src="lottie/Anim.json"
 		:theme="options.theme"
 		:player-size="options.playerSize"
 		:player-controls="true"
 		:autoplay="true"
 		:loop="true"
-		style="width: 100%; height:400px"
+		style="width: 100%; height:auto;"
 	)
-	p lottie-vue init
 	// https://assets2.lottiefiles.com/packages/lf20_hu2LUv.json || https://assets10.lottiefiles.com/packages/lf20_tzjfwgud.json
+	// https://new-cloud.intensa-dev.ru/Anim.json ||  ~@/img/Anim.json
 </template>
 
 <script>

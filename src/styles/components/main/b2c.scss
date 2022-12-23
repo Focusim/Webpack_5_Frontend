@@ -1,6 +1,5 @@
 .b2c {
 	padding: 70px 0 70px 0;
-	border-bottom: 1px solid black;
 
 	@media ($media-tablet) {
 		padding: 70px 0 70px 0;
@@ -85,11 +84,13 @@
 			@media ($media-tablet) {
 				column-gap: 32px;
 				row-gap: 20px;
+
+				flex-direction: column;
+				width: fit-content;
+				margin: 0 auto;
 			}
 
 			@media ($media-mobile) {
-				flex-wrap: nowrap;
-				flex-direction: column;
 				row-gap: 30px;
 			}
 		}

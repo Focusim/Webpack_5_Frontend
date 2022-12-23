@@ -1,10 +1,17 @@
-import '../components/header';
+import '../components/index/header';
+import '../components/index/scroll';
 
 
 
+import { createApp } from 'vue';
+import lottieVue from "@/vue/lottie-vue.vue";
+// import recallVue from "@/vue/index/recall.vue";
 
+const LottieSelector = document.querySelector('#lottie-vue');
+if (LottieSelector) createApp(lottieVue).mount(LottieSelector);
 
-
+// const SwiperRecall = document.querySelector('#swiper-recall');
+// if (SwiperRecall) createApp(recallVue).mount(SwiperRecall);
 
 
 

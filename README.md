@@ -19,3 +19,4 @@ https://blog.canopas.com/implement-different-types-of-sliders-using-vue-3-and-sw
 
 # Lottie Vue GitHub
 https://github.com/LottieFiles/lottie-vue
+### Path to lottie files /static/lottie/*
