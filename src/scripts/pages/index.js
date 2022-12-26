@@ -1,20 +1,28 @@
 import '../components/index/header';
 import '../components/index/scroll';
-
-
-
 import { createApp } from 'vue';
-import lottieVue from "@/vue/lottie-vue.vue";
-// import recallVue from "@/vue/index/recall.vue";
+import headVue from "@/vue/index/head.vue";
+import launchMoreVue from "@/vue/index/launch-more.vue";
 
-const LottieSelector = document.querySelector('#lottie-vue');
-if (LottieSelector) createApp(lottieVue).mount(LottieSelector);
+class MainPage {
+	constructor() {
 
-// const SwiperRecall = document.querySelector('#swiper-recall');
-// if (SwiperRecall) createApp(recallVue).mount(SwiperRecall);
+		this.init();
+		this.vueComponents([launchMoreVue, '#vue-launch-more']);
+		this.vueComponents([headVue, '#vue-head']);
+	}
 
+	init() {
+		console.log('init JS main page');
+	}
 
+	vueComponents([component, selector]) {
+		const element = document.querySelector(`${selector}`);
+		if (element) createApp(component).mount(element);
+	}
+}
 
+new MainPage();
 
 
 

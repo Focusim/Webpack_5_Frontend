@@ -1,50 +1,84 @@
 <template lang="pug">
-div
-	lottie-player(
-		src="lottie/Anim.json"
-		:theme="options.theme"
-		:player-size="options.playerSize"
-		:player-controls="true"
-		:autoplay="true"
-		:loop="true"
-		style="width: 100%; height:auto;"
-	)
+swiper(
+	:pagination="true"
+	:mousewheel=`{
+	sensitivity: 1,
+	forceToAxis: true,
+	}`
+	:free-mode=`{
+	enabled: false,
+	momentum: true,
+	momentumBounceRatio: 1,
+	momentumRatio: 1,
+	momentumVelocityRatio: 1,
+	}`
+	:slides-per-view="1"
+	:space-between="50"
+)
+	swiper-slide.swiper-slide
+		lottie-player(
+			class="swiper-slide__lottie"
+			src="lottie/index/head/one.json"
+			:player-controls="true"
+			:speed="1"
+			:autoplay="true"
+			:loop="true"
+			style="width: 100%; height:auto;"
+		)
+	swiper-slide
+		lottie-player(
+			src="lottie/index/head/two.json"
+			:player-controls="true"
+			:speed="1"
+			:autoplay="true"
+			:loop="true"
+			style="width: 100%; height:auto;"
+		)
+	swiper-slide
+		lottie-player(
+			src="lottie/index/head/three.json"
+			:player-controls="true"
+			:speed="1"
+			:autoplay="true"
+			:loop="true"
+			style="width: 100%; height:auto;"
+		)
+
+
+
+// для лотти можно задать бекграунд - :background-color= "`#F0F3F6`"
+// для свайпера можно задать эффект - :effect="`flip`"
+
+
 	// https://assets2.lottiefiles.com/packages/lf20_hu2LUv.json || https://assets10.lottiefiles.com/packages/lf20_tzjfwgud.json
 	// https://new-cloud.intensa-dev.ru/Anim.json ||  ~@/img/Anim.json
 </template>
 
 <script>
-import LottieVuePlayer from"@lottiefiles/vue-lottie-player";
+import LottieVuePlayer from "@lottiefiles/vue-lottie-player";
+import SwiperCore, { Mousewheel, FreeMode, EffectFade } from 'swiper';
+SwiperCore.use([Mousewheel, FreeMode, EffectFade]);
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import {Swiper, SwiperSlide} from "swiper/vue";
+
 
 export default {
 	name: 'lottie-vue',
 	components: {
-		vLottiePlayer: LottieVuePlayer
+		vLottiePlayer: LottieVuePlayer,
+		Swiper,
+		SwiperSlide,
 	},
 	data() {
-		return {
-			options: {
-				autoplay: true,
-				minimizable: false,
-				playerSize: "standard",
-				backgroundColor: '#fff',
-				backgroundStyle: 'color',
-				theme: {
-					controlsView: "standard",
-					active: "light",
-					light: {
-						color: '#3D4852',
-						backgroundColor: '#fff',
-						opacity: '0.7',
-					},
-					dark: {
-						color: '#fff',
-						backgroundColor: '#202020',
-						opacity: '0.7',
-					}
-				}
-			}
-		}
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+.swiper-wrapper {
+}
+.swiper-slide {
+}
+</style>
