@@ -112,6 +112,11 @@
 		margin: 0 auto;
 		width: fit-content;
 
+		@media (min-width: 769px) {
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+
 		@media ($media-tablet) {
 			display: block;
 			overflow: auto;
@@ -220,6 +225,7 @@
 		}
 
 		&__img {
+			z-index: 2;
 
 			img {
 				width: 40px;
@@ -233,6 +239,7 @@
 		}
 
 		&__value {
+			z-index: 1;
 			font-size: 12px;
 			font-weight: 500;
 			line-height: 17px;
