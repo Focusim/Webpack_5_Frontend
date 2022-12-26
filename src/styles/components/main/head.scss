@@ -1,4 +1,5 @@
 .head {
+	overflow: hidden;
 	padding: 64px 0 0 0;
 
 	@media ($media-tablet) {
@@ -9,7 +10,15 @@
 		display: flex;
 		flex-direction: column;
 		text-align: center;
-		padding: 0 0 40px 0;
+		margin: 0 0 50px 0;
+
+		@media ($media-tablet) {
+			margin: 0 0 50px 0;
+		}
+
+		@media ($media-mobile) {
+			margin: 0 0 40px 0;
+		}
 	}
 
 	&__title {
@@ -60,3 +69,186 @@
 		}
 	}
 }
+
+
+// start
+// vue component styles
+//
+.showing {
+
+	&__wrapper {
+
+	}
+
+	&__item {
+
+		&--active {
+		}
+	}
+}
+
+.controller {
+	display: flex;
+	justify-content: center;
+	margin: 0 0 10px 0;
+
+	@media ($media-tablet) {
+		width: calc(100% + 60px);
+		margin: 0 0 10px -30px;
+	}
+
+	@media ($media-mobile) {
+		width: calc(100% + 40px);
+		margin: 0 0 10px -20px;
+	}
+
+	&__inner {
+		display: block;
+		overflow: auto;
+		white-space: nowrap;
+		overflow-y: hidden;
+		position: relative;
+		padding: 0 0 15px 0;
+		margin: 0 auto;
+		width: fit-content;
+
+		@media ($media-tablet) {
+			display: block;
+			overflow: auto;
+			white-space: nowrap;
+			padding: 0 30px 15px 30px;
+		}
+
+		@media ($media-mobile) {
+			padding: 0 20px 15px 20px;
+		}
+
+		& > * {
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		& .controller__item:last-child {
+			margin-right: 0;
+		}
+	}
+
+	&__item {
+		position: relative;
+		display: inline-flex;
+		height: 64px;
+		width: 234px;
+		min-width: 234px;
+		background: #E8EBEE;
+		border-radius: 8px;
+		padding: 12px;
+		cursor: pointer;
+		align-items: center;
+		margin: 0 20px 0 0;
+		white-space: normal;
+
+		@media ($media-tablet) {
+			height: 64px;
+			width: 234px;
+			min-width: 234px;
+			border-radius: 8px;
+			padding: 12px;
+			margin: 0 20px 0 0;
+		}
+
+		&--active {
+			background: $color-dark;
+
+			&::before {
+				content: '';
+				position: absolute;
+				bottom: -13px;
+				left: 50%;
+				transform: translateX(-50%);
+				background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAzNyAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI1LjAzNCA4LjA0MzM4QzIzLjA4MDQgMTIuMDM0MyAyMS44MDQ2IDE0Ljk5OTMgMTguNSAxNUMxNS4xOTU0IDE0Ljk5OTMgMTMuOTE5NiAxMi4wMzQzIDExLjk2NiA4LjA0MzM4QzEwLjAxMjEgNC4wNTE5MyA1Ljg4NTY1IDIuMDI0NjRlLTA2IDAgMEgzN0MzMS4xMTQzIDIuMDI0NjRlLTA2IDI2Ljk4NzkgNC4wNTE5MyAyNS4wMzQgOC4wNDMzOFoiIGZpbGw9IiMyOTJBMkYiLz4KPC9zdmc+Cg==) 0 0 / contain no-repeat;
+				width: 37px;
+				height: 15px;
+
+				@media ($media-tablet) {
+					bottom: -15px;
+					width: 37px;
+					height: 15px;
+				}
+			}
+
+			.controller__item-text {
+				color: $color-white;
+			}
+		}
+	}
+
+	&__item-text {
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 17px;
+		letter-spacing: -0.01em;
+		color: $color-black;
+
+		@media ($media-tablet) {
+			font-size: 14px;
+			line-height: 17px;
+		}
+	}
+
+	.circles {
+		display: flex;
+
+		& > div {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			background: #464A54;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			@media ($media-tablet) {
+				width: 40px;
+				height: 40px;
+			}
+		}
+
+		&__img {
+
+			img {
+				width: 40px;
+				height: 40px;
+
+				@media ($media-tablet) {
+					width: 40px;
+					height: 40px;
+				}
+			}
+		}
+
+		&__value {
+			font-size: 12px;
+			font-weight: 500;
+			line-height: 17px;
+			color: #969AA4;
+			margin: 0 3px 0 0;
+			transform: translateX(-9px);
+
+			@media ($media-tablet) {
+				font-size: 12px;
+				line-height: 17px;
+				margin: 0 3px 0 0;
+				transform: translateX(-9px);
+			}
+		}
+	}
+}
+//
+// vue component styles
+// end

@@ -41,8 +41,6 @@ export default {
 			animItem.play();
 			console.log('mouseleave')
 		});
-
-		console.log(3)
 	}
 }
 </script>
