@@ -31,9 +31,6 @@
 
 <script>
 import LottieVuePlayer from "@lottiefiles/vue-lottie-player";
-import expendsOne from "../../static/lottie/index/head/one.json";
-import expendsTwo from "../../static/lottie/index/head/two.json";
-import expendsThree from "../../static/lottie/index/head/three.json";
 
 
 export default {
@@ -48,19 +45,19 @@ export default {
 				{
 					id: 1,
 					text: 'App user with upcoming birthday',
-					img: '/lottie/index/head/controller-tap-1.png',
+					img: '/lottie/index/head/controller-tap-1.jpg',
 					value: '15K'
 				},
 				{
 					id: 2,
 					text: 'Churn Reactivation',
-					img: '/lottie/index/head/controller-tap-2.png',
+					img: '/lottie/index/head/controller-tap-2.jpg',
 					value: '6K'
 				},
 				{
 					id: 3,
 					text: 'Abandoned Cart',
-					img: '/lottie/index/head/controller-tap-3.png',
+					img: '/lottie/index/head/controller-tap-3.jpg',
 					value: '2K'
 				},
 			],
@@ -68,17 +65,14 @@ export default {
 				{
 					id: 1,
 					link: '/lottie/index/head/one.json',
-					json: expendsOne
 				},
 				{
 					id: 2,
 					link: '/lottie/index/head/two.json',
-					json: expendsTwo
 				},
 				{
 					id: 3,
 					link: '/lottie/index/head/three.json',
-					json: expendsThree
 				},
 			]
 		}
