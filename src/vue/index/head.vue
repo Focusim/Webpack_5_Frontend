@@ -32,7 +32,6 @@
 <script>
 import LottieVuePlayer from "@lottiefiles/vue-lottie-player";
 
-
 export default {
 	name: 'head',
 	components: {

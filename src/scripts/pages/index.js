@@ -1,6 +1,7 @@
 import '../components/index/header';
 import '../components/index/scroll';
 import { createApp } from 'vue';
+import Vue3Lottie from 'vue3-lottie'
 import headVue from "@/vue/index/head.vue";
 import launchMoreVue from "@/vue/index/launch-more.vue";
 
@@ -18,7 +19,7 @@ class MainPage {
 
 	vueComponents([component, selector]) {
 		const element = document.querySelector(`${selector}`);
-		if (element) createApp(component).mount(element);
+		if (element) createApp(component).use(Vue3Lottie, { name: 'vue3-lottie-player' }).mount(element);
 	}
 }
 

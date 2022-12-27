@@ -8,6 +8,7 @@ module.exports = {
 		cacheBusting: false, // true by default (:
 		compilerOptions: {
 			vLottiePlayer:  (tag) => tag === "lottie-player",
+			v3LottiePlayer:  (tag) => tag === "vue3-lottie-player",
 		},
 	},
 };

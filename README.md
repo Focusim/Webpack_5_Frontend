@@ -32,4 +32,9 @@ $ yarn build || npm run build
     <td><a href="https://github.com/LottieFiles/lottie-vue">Vue GitHub</a></td>
 		<td>Path to lottie files /static/lottie/</td>
   </tr>
+  <tr>
+    <td>Lottie Vue 3</td>
+    <td><a href="https://vue3-lottie.vercel.app/guide.html">Documentation</a></td>
+		<td>extended version</td>
+  </tr>
 </table>

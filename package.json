@@ -25,7 +25,8 @@
 	"dependencies": {
 		"@lottiefiles/vue-lottie-player": "^1.1.0",
 		"normalize.css": "^8.0.1",
-		"swiper": "^8.4.5"
+		"swiper": "^8.4.5",
+		"vue3-lottie": "^2.4.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.18.6",

@@ -10,57 +10,68 @@
 			)
 				.controller__img(:data-text="item.text")
 					img(:src="item.img")
+				.controller__text(v-html="item.text")
 	swiper(
-		:pagination="true"
+		@slideChange="onSlideChange"
+		:pagination=`{
+			clickable: true
+		}`
 		:mousewheel=`{
-		sensitivity: 1,
-		forceToAxis: true,
+			sensitivity: 1,
+			forceToAxis: true,
 		}`
 		:free-mode=`{
-		enabled: false,
-		momentum: true,
-		momentumBounceRatio: 1,
-		momentumRatio: 1,
-		momentumVelocityRatio: 1,
+			enabled: false,
+			momentum: true,
+			momentumBounceRatio: 1,
+			momentumRatio: 1,
+			momentumVelocityRatio: 1,
 		}`
-		@slideChange="onSlideChange"
 		:slides-per-view="1"
-		:space-between="30"
+		:breakpoints=`{
+			1: {
+				spaceBetween: 10,
+			},
+			501: {
+				spaceBetween: 30,
+			},
+		}`
 	)
 		swiper-slide.swiper-slide(
 			v-for="item in expositionList"
 			:class="{'showing__item--active': (item.id === expositionSelect)}"
+			:activeIndex="3"
 		)
-			lottie-player(
+			vue3-lottie-player(
 				ref="lottie"
-				:src="item.link"
+				:animationLink="item.link"
 				:speed="1"
-				@complete="complete"
-				@segmentStart="segmentStart"
+				:autoPlay="false"
+				:loop="false"
+				@onComplete="onComplete"
 				style="width: 100%; height:auto;"
 			)
 </template>
 
 <script>
-import LottieVuePlayer from "@lottiefiles/vue-lottie-player";
-
-import SwiperCore, { Mousewheel, FreeMode, EffectFade } from 'swiper';
-SwiperCore.use([Mousewheel, FreeMode, EffectFade]);
-
+import Vue3Lottie from 'vue3-lottie'
+import {Swiper, SwiperSlide} from "swiper/vue";
+import SwiperCore, { Mousewheel, FreeMode, Pagination } from 'swiper';
+SwiperCore.use([Mousewheel, FreeMode, Pagination ]);
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import {Swiper, SwiperSlide, useSwiper} from "swiper/vue";
 
 export default {
 	name: "launch-more",
 	components: {
-		vLottiePlayer: LottieVuePlayer,
+		v3LottiePlayer: Vue3Lottie,
 		Swiper,
 		SwiperSlide,
 	},
 	data() {
 		return {
+			pagination: [],
 			expositionSelect: 1,
 			controllerList: [
 				{
@@ -140,39 +151,48 @@ export default {
 			]
 		}
 	},
-
 	mounted() {
+		this.pagination = document.querySelectorAll('.launch-more-slider .swiper-pagination-bullet');
 	},
-
 	methods: {
-		complete() {
-			console.log('complete')
+		onComplete() {
+			console.log('complete slide: ' + this.expositionSelect)
 		},
 
-		segmentStart() {
-			console.log('segmentStart')
+		scrollControllItem() {
+			const container = this.$refs.controller;
+			const activeIndex = this.expositionSelect;
+			const activeItem = this.$refs.controllerItems[activeIndex - 1]
+			const posLeft = activeItem.getBoundingClientRect().left
+			const padding = Number.parseInt(window.getComputedStyle(document.querySelector('.container')).paddingRight)
+
+			container.scrollBy({
+				left: posLeft - padding,
+				behavior: 'smooth',
+			});
 		},
 
 		controllerChange(index) {
 			this.expositionSelect = index;
+			this.pagination[this.expositionSelect - 1].click();
 		},
 
 		onSlideChange(swiper) {
 			console.log('активный слайд:' + swiper.activeIndex)
-
 			this.expositionSelect = swiper.activeIndex + 1
-
 			this.animChange();
+			this.scrollControllItem();
 		},
 
 		animChange() {
 			this.$refs.lottie.forEach((el, index) => {
 				el.stop();
-				if ((index + 1) === this.expositionSelect) el.play();
+
+				if ((index + 1) === this.expositionSelect) {
+					el.play();
+				}
 			})
 		},
-
-
 	}
 }
 </script>
