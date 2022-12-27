@@ -65,16 +65,6 @@
 				width: 36.93vw;
 			}
 
-			@media (max-width: 610px) {
-				//min-width: 70vw;
-				//width: 70vw;
-			}
-
-			@media (max-width: 450px) {
-				//min-width: 253px;
-				//width: 253px;
-			}
-
 			@media (max-width: 550px) {
 				min-width: 253px;
 				width: 253px;
@@ -161,6 +151,8 @@
 		}
 
 		&__value {
+			display: flex;
+			align-items: center;
 			width: fit-content;
 			border-radius: 20px;
 			padding: 8px 12px 8px 12px;
@@ -183,6 +175,38 @@
 
 			@media ($media-tablet) {
 				font-size: 40px;
+				line-height: 51px;
+			}
+		}
+
+		&__emoji {
+			width: 40px;
+			height: 37px;
+
+			@media ($media-tablet) {
+				width: 40px;
+				height: 37px;
+			}
+
+			img {
+				width: 40px;
+				height: 37px;
+
+				@media ($media-tablet) {
+					width: 40px;
+					height: 37px;
+				}
+			}
+		}
+
+		&__emoji-text {
+			font-size: 39px;
+			font-weight: 500;
+			line-height: 51px;
+			letter-spacing: 0.02em;
+
+			@media ($media-tablet) {
+				font-size: 39px;
 				line-height: 51px;
 			}
 		}

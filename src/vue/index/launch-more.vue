@@ -42,7 +42,8 @@
 </template>
 
 <script>
-import LottieVuePlayer from"@lottiefiles/vue-lottie-player";
+import LottieVuePlayer from "@lottiefiles/vue-lottie-player";
+
 import SwiperCore, { Mousewheel, FreeMode, EffectFade } from 'swiper';
 SwiperCore.use([Mousewheel, FreeMode, EffectFade]);
 
@@ -149,7 +150,7 @@ export default {
 		},
 
 		segmentStart() {
-			console.log('123')
+			console.log('segmentStart')
 		},
 
 		controllerChange(index) {
