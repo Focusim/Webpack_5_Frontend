@@ -4,21 +4,22 @@ header.header
 			.burger(data-burger-btn)
 				img(src="~@/img/burger.svg")
 			a.logo(href="/")
+				img.delete(src="~@/img/new-year.svg")
 				img(src="~@/img/logo_mindbox-black.svg")
 			nav.nav
 				ul.nav__list
 					li.nav__item.nav__item--close(data-burger-btn)
 						img(src="~@/img/burger-close.svg")
 					li.nav__item
-						a.nav__item-link(href="#") Campaigns
+						a.nav__item-link.nav__item-link--active(href="#" aria-label="Campaigns")
 					li.nav__item
-						a.nav__item-link(href="#") Roadmap
+						a.nav__item-link(href="#" aria-label="Roadmap")
 					li.nav__item
-						a.nav__item-link(href="#") Revenue
+						a.nav__item-link(href="#" aria-label="Revenue")
 					li.nav__item
-						a.nav__item-link(href="#") Clients
+						a.nav__item-link(href="#" aria-label="Clients")
 					li.nav__item
-						a.nav__item-link(href="#") All-in-one
+						a.nav__item-link(href="#" aria-label="All-in-one")
 					li.nav__item
-						a.nav__item-link(href="#") Launch in USA
+						a.nav__item-link(href="#" aria-label="Launch in USA")
 			a.btn(href="#") Talk to founder

@@ -38,6 +38,7 @@
 	}
 
 	.logo {
+		position: relative;
 		height: 26px;
 		width: 119px;
 
@@ -126,8 +127,9 @@
 		}
 
 		&__item-link {
-			display: inline-block;
+			display: block;
 			position: relative;
+			text-align: center;
 			font-size: 12px;
 			font-weight: 400;
 			line-height: 12px;
@@ -143,13 +145,47 @@
 
 			&:hover {
 				opacity: 1;
-				font-weight: 700;
+
+				&:before {
+					font-weight: 700;
+					visibility: visible;
+				}
+
+				&:after {
+					display: none;
+				}
+			}
+
+			&:before, &:after {
+				content: attr(aria-label);
+				text-decoration: inherit;
+			}
+
+			&:before {
+			  font-weight: 700;
+			  visibility: hidden;
+		  }
+
+			&:after {
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
 			}
 		}
 
 		&__item-link--active {
 			opacity: 1;
-			font-weight: 700;
+
+			&:before {
+				font-weight: 700;
+				visibility: visible;
+			}
+
+			&:after {
+				display: none;
+			}
 		}
 	}
 
@@ -177,5 +213,29 @@
 			padding: 12px 24px;
 			border-radius: 4px;
 		}
+	}
+}
+
+
+
+.delete {
+	position: absolute !important;
+	top: -13px !important;
+	left: -25px !important;
+	z-index: 100 !important;
+	transform: translate(0, 0) scale(1) skewX(353deg) rotate(320deg)!important;
+	width: 40px !important;
+	height: 40px !important;
+	display: block !important;
+
+	@media ($media-tablet) {
+		top: -10% !important;
+	}
+
+	@media ($media-mobile) {
+		top: -13px !important;
+		left: -25px !important;
+		width: 40px !important;
+		height: 40px !important;
 	}
 }

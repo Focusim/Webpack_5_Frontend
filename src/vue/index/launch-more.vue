@@ -20,6 +20,7 @@
 			sensitivity: 1,
 			forceToAxis: true,
 		}`
+		:threshold="50"
 		:free-mode=`{
 			enabled: false,
 			momentum: true,
@@ -38,9 +39,9 @@
 		}`
 	)
 		swiper-slide.swiper-slide(
-			v-for="item in expositionList"
+			v-for="(item, index) in expositionList"
 			:class="{'showing__item--active': (item.id === expositionSelect)}"
-			:activeIndex="3"
+			@click="slideClick(index)"
 		)
 			vue3-lottie-player(
 				ref="lottie"
@@ -48,7 +49,6 @@
 				:speed="1"
 				:autoPlay="false"
 				:loop="false"
-				@onComplete="onComplete"
 				style="width: 100%; height:auto;"
 			)
 </template>
@@ -155,16 +155,12 @@ export default {
 		this.pagination = document.querySelectorAll('.launch-more-slider .swiper-pagination-bullet');
 	},
 	methods: {
-		onComplete() {
-			console.log('complete slide: ' + this.expositionSelect)
-		},
-
 		scrollControllItem() {
 			const container = this.$refs.controller;
 			const activeIndex = this.expositionSelect;
-			const activeItem = this.$refs.controllerItems[activeIndex - 1]
-			const posLeft = activeItem.getBoundingClientRect().left
-			const padding = Number.parseInt(window.getComputedStyle(document.querySelector('.container')).paddingRight)
+			const activeItem = this.$refs.controllerItems[activeIndex - 1];
+			const posLeft = activeItem.getBoundingClientRect().left;
+			const padding = Number.parseInt(window.getComputedStyle(document.querySelector('.container')).paddingRight);
 
 			container.scrollBy({
 				left: posLeft - padding,
@@ -178,7 +174,6 @@ export default {
 		},
 
 		onSlideChange(swiper) {
-			console.log('активный слайд:' + swiper.activeIndex)
 			this.expositionSelect = swiper.activeIndex + 1
 			this.animChange();
 			this.scrollControllItem();
@@ -193,6 +188,11 @@ export default {
 				}
 			})
 		},
+
+		slideClick(index) {
+			this.expositionSelect = index;
+			this.pagination[this.expositionSelect].click();
+		}
 	}
 }
 </script>

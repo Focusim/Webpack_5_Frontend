@@ -1,16 +1,18 @@
 import '../components/index/header';
 import '../components/index/scroll';
 import { createApp } from 'vue';
-import Vue3Lottie from 'vue3-lottie'
-import headVue from "@/vue/index/head.vue";
-import launchMoreVue from "@/vue/index/launch-more.vue";
+import Vue3LottieApp from 'vue3-lottie'
+import vueHeadLottie from "@/vue/index/head.vue";
+import vueForm from "@/vue/index/start.vue";
+import vueLaunchMoreLottie from "@/vue/index/launch-more.vue";
 
 class MainPage {
 	constructor() {
 
 		this.init();
-		this.vueComponents([launchMoreVue, '#vue-launch-more']);
-		this.vueComponents([headVue, '#vue-head']);
+		this.vueComponents([vueHeadLottie, '#vue-head']);
+		this.vueComponents([vueLaunchMoreLottie, '#vue-launch-more']);
+		this.vueComponents([vueForm, '#vue-form-start']);
 	}
 
 	init() {
@@ -19,7 +21,7 @@ class MainPage {
 
 	vueComponents([component, selector]) {
 		const element = document.querySelector(`${selector}`);
-		if (element) createApp(component).use(Vue3Lottie, { name: 'vue3-lottie-player' }).mount(element);
+		if (element) createApp(component).use(Vue3LottieApp, { name: 'vue3-lottie-player' }).mount(element);
 	}
 }
 
