@@ -190,8 +190,8 @@ export default {
 		},
 
 		slideClick(index) {
-			this.expositionSelect = index;
-			this.pagination[this.expositionSelect].click();
+			this.expositionSelect = index + 1;
+			this.pagination[this.expositionSelect - 1].click();
 		}
 	}
 }

@@ -47,6 +47,7 @@
 					)
 				label.form__input-label(data-error="Incorrect phone, try again")
 					.form__input-description Phone
+					input-phone
 					input.form__input(
 						placeholder="phone"
 						required="required"
@@ -96,9 +97,12 @@
 </template>
 
 <script>
+import InputPhone from "@/vue/components/inputPhone.vue";
+
 export default {
 	name: "start",
 	components: {
+		InputPhone
 	},
 	data() {
 		return {

@@ -430,6 +430,54 @@
 			z-index: -1;
 		}
 	}
+
+	.flag {
+		display: flex;
+		align-items: center;
+		border: 1px solid $color-light-gray-1;
+		border-radius: 20px;
+		padding: 5px 6px 5px 10px;
+		margin: -6px 10px -7px 0;
+
+		&.flag--empty {
+			&:before {
+				content: '+';
+				font-size: 16px;
+				font-weight: 400;
+				line-height: 24px;
+				letter-spacing: -0.02em;
+				text-align: left;
+				color: $color-dark;
+			}
+		}
+
+		&__input {
+			font-size: 16px;
+			font-weight: 400;
+			line-height: 24px;
+			letter-spacing: -0.02em;
+			text-align: left;
+			min-width: 24px;
+			width: 24px;
+			margin: 0 3px 0 0;
+
+			&::placeholder {
+				color: $color-light-gray-2;
+			}
+		}
+
+		&__out-img {
+			display: inline-block;
+			height: 18px;
+			width: 18px;
+			border-radius: 50%;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+			cursor: pointer;
+			will-change: background-position;
+		}
+	}
 	//
 	// vue components style
 	// end
