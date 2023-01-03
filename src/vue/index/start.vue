@@ -222,7 +222,6 @@ export default {
 				if (point) break;
 			}
 
-
 			if (!this.phone.successSearch) {
 				this.phone.selected.icon = this.phone.countries.plug;
 			} else {
@@ -268,7 +267,7 @@ export default {
 				}
 
 			} else {
-
+				//
 			}
 		}
 	},
