@@ -1,6 +1,6 @@
 export default {
-  image: '_',
-  opts: [
+  plug: '_',
+  list: [
     {
       "na": "United States",
       "ph": "1",

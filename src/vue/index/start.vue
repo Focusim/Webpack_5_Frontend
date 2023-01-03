@@ -47,14 +47,27 @@
 					)
 				label.form__input-label(data-error="Incorrect phone, try again")
 					.form__input-description Phone
-					input-phone
+
+					.flag(:class="{'flag--empty': (phone.countryNum.length > 0)}")
+						input.flag__input(
+							ref="countryInput"
+							placeholder="+1"
+							type="tel"
+							v-model="phone.countryNum"
+							@input="searchCountry"
+						)
+						.flag__out-img(:style="{ 'background-image': 'url(/countries/images/' + phone.selected.icon + '.svg)' }")
+
 					input.form__input(
+						ref="phoneInput"
 						placeholder="phone"
 						required="required"
+						type="tel"
 						v-model.trim="participant.phone"
 						name="phone"
 						@click="clearValidate"
-						@input="clearValidate"
+						@input="clearValidate(); inputHandlerPhone();"
+						@keydown.delete="deleteHandlerPhone($event.target.value)"
 					)
 				label.form__input-label(data-error="Incorrect info, try again")
 					.form__input-description Info
@@ -81,42 +94,51 @@
 				input.form__submit(
 					type="submit"
 					value="Talk to founder"
-					:class="isSending ? 'form__submit--sending' : ''"
 					@click="submitHandler")
 				img.form__submit-arrow(src="~@/img/index/start/arrow.svg")
 			p.form__description We'll reach out to you within 24 hours
 
-	.success(v-if="success" :key="success")
+	.success(v-if="status.success" :key="status.success")
 		.success__inner
 			.success__title Thank you for <br>the application
 			.success__text We'll reach out to you within 24 hours
 			.success__btn(
-				@click="success = false"
+				@click="status.success = false"
 			) Close
 			img.success__btn-close(src="~@/img/index/start/close.svg")
 </template>
 
 <script>
-import InputPhone from "@/vue/components/inputPhone.vue";
+import countries from "@/static/countries/list";
+import {logPlugin} from "@babel/preset-env/lib/debug";
 
 export default {
 	name: "start",
-	components: {
-		InputPhone
-	},
 	data() {
 		return {
 			regEmail: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,7})$/,
 			regSite: /^(\s{1,3})?((https?|ftp|smtp):\/\/)?(www.)?[a-zA-Zа-яА-Яё0-9_\-\.]+(\.[a-zA-Zа-яА-Яё]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?(\s{1,3})?$/,
-			question: '',
+			regPhone: /^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$/im,
 			inputs: [],
 			participant: {
 			},
-			preloaderActive: false,
-			isSent: false,
-			isSending: false,
-			errorValidate: '',
-			success: false,
+			status: {
+				// isSent: false,
+				// isSending: false,
+				success: false,
+			},
+
+			phone: {
+				countryNum: '',
+				countries: countries,
+				successSearch: false,
+				selected: {
+					na: '',
+					co: '',
+					ph: '',
+					icon: countries.plug,
+				},
+			}
 		}
 	},
 	mounted() {
@@ -170,11 +192,84 @@ export default {
 		},
 
 		submitHandler() {
-			this.success = this.checkValidate();
+			this.status.success = this.checkValidate();
 		},
 
 		ajax() {
 
+		},
+
+		searchCountry() {
+			this.phone.successSearch = false;
+			this.$refs.countryInput.style.width = ((this.phone.countryNum.length + 1) * 8) + 'px';
+			this.phone.countryNum = this.phone.countryNum.replace(/\+/g, '');
+			let codeCountry = '';
+
+			for (let i = 1; i <= this.phone.countryNum.length; i++) {
+				let enumerationValue = this.phone.countryNum.substr(0, i);
+				let point = false;
+
+				for (let item of this.phone.countries.list) {
+					if (enumerationValue.match(item.ph) && enumerationValue.match(item.ph).index === 0) {
+						codeCountry = item.ph;
+						this.phone.selected.icon = item.co.toUpperCase();
+						this.phone.successSearch = true;
+						point = true;
+						break;
+					}
+				}
+
+				if (point) break;
+			}
+
+
+			if (!this.phone.successSearch) {
+				this.phone.selected.icon = this.phone.countries.plug;
+			} else {
+				this.participant.phone = this.phone.countryNum.replace(codeCountry, '');
+				this.phone.countryNum = codeCountry;
+				this.$refs.countryInput.style.width = ((this.phone.countryNum.length + 1) * 8) + 'px';
+				this.phoneNextStep();
+			}
+		},
+
+		phoneNextStep() {
+			this.$refs.phoneInput.focus();
+		},
+
+		deleteHandlerPhone(length) {
+			if (!length) this.$refs.countryInput.focus();
+		},
+
+		inputHandlerPhone() {
+			this.participant.phone = this.participant.phone.replace(/[+, ]/g, '');
+
+			if (!this.phone.successSearch) {
+
+				for (let i = 1; i <= this.participant.phone.length; i++) {
+					let enumerationValue = this.participant.phone.substr(0, i);
+					let point = false;
+
+					for (let item of this.phone.countries.list) {
+						if (enumerationValue.match(item.ph) && enumerationValue.match(item.ph).index === 0) {
+							this.phone.countryNum = item.ph;
+							this.phone.selected.icon = item.co.toUpperCase();
+							this.phone.successSearch = true;
+							point = true;
+							break;
+						}
+					}
+
+					if (point) {
+						this.participant.phone = this.participant.phone.replace(`${this.phone.countryNum}`, '');
+						this.$refs.countryInput.style.width = ((this.phone.countryNum.length + 1) * 8) + 'px';
+						break;
+					}
+				}
+
+			} else {
+
+			}
 		}
 	},
 }
