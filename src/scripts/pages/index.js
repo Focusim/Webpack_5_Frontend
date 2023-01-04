@@ -2,9 +2,9 @@ import '../components/index/header';
 import '../components/index/scroll';
 import { createApp } from 'vue';
 import Vue3LottieApp from 'vue3-lottie'
-import vueHeadLottie from "@/vue/page/index/head.vue";
-import vueForm from "@/vue/page/index/start.vue";
-import vueLaunchMoreLottie from "@/vue/page/index/launch-more.vue";
+import vueHeadLottie from "@/vue/pages/index/head.vue";
+import vueForm from "@/vue/pages/index/start.vue";
+import vueLaunchMoreLottie from "@/vue/pages/index/launch-more.vue";
 
 class MainPage {
 	constructor() {
