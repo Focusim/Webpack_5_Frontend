@@ -107,7 +107,7 @@
   <tr>
     <td><b>STYLES</b></td>
     <td><span style="color: yellow">index</span>.scss</td>
-    <td>/styles/page/<span style="color: yellow">index</span>.scss</td>
+    <td>/styles/pages/<span style="color: yellow">index</span>.scss</td>
     <td>/styles/components/<span style="color: yellow">index</span>/*</td>
   </tr>
   <tr>
