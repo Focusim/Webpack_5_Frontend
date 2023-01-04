@@ -88,7 +88,7 @@
 </table>
 
 # Roadmap files 🏞
-### Index page build example:
+### <span style="color: yellow">Index</span> page build example:
 
 <table style="font-size: 14px;table-layout:fixed; white-space: nowrap;">
   <tr>
@@ -120,6 +120,12 @@
     <td><b>VUE</b></td>
     <td></td>
     <td>/vue/pages/<span style="color: yellow">index</span>/*</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><b>Lottie files</b></td>
+    <td></td>
+    <td>/static/lottie/<span style="color: yellow">index</span>/*</td>
     <td></td>
   </tr>
 </table>
