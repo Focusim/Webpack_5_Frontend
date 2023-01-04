@@ -1,5 +1,8 @@
-@import '../components/index';
+// Main
+@import '../global/vars';
+@import '../global/mixins';
+@import '../components/index'; // for widths: < 1280px
 
 @media ($media-desktop) {
-	@import '../components/index';
+	@import '../components/index'; // for widths: > 1280px
 }
