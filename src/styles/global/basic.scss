@@ -18,6 +18,26 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.anchor[id^="anchor-"] {
+	position: absolute;
+	top: -100px;
+	left: 0;
+	opacity: 0;
+	pointer-events: none;
+
+	@media ($media-desktop) {
+		top: -100px;
+	}
+
+	@media ($media-tablet) {
+		top: -64px;
+	}
+}
+
+section {
+	position: relative;
+}
+
 a {
 	text-decoration: none;
 
