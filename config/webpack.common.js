@@ -91,7 +91,8 @@ module.exports = {
 			}],
 		}),
 		...PAGES.map((page) => {
-			const PAGE_NAME = page.replace(/^_/g, '').replace(/\.(pug|html|twig)/g, '');
+			let PAGE_NAME = page.replace(/^_/g, '').replace(/\.(pug|html|twig)/g, '');
+			// if (PAGE_NAME === 'main-page') PAGE_NAME = 'index'; // set index page
 			return new HtmlWebpackPlugin({
 				template: `${PAGES_DIR}/${page}`,
 				filename: `./${PAGE_NAME}.html`,
