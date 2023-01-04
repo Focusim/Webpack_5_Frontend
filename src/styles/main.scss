@@ -2,8 +2,8 @@
 @import '~normalize.css';
 
 // Variables and mixin
-@import 'vars';
-@import 'mixins';
+@import 'global/vars';
+@import 'global/mixins';
 
 // Global
 @import 'global/fonts';

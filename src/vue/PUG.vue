@@ -20,8 +20,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/styles/mixins.scss';
-@import '@/styles/vars.scss';
+@import '@/styles/global/mixins.scss';
+@import '@/styles/global/vars.scss';
 
 section.vue {
 	text-align: center;
