@@ -1,4 +1,4 @@
-import '../components/index/scroll';
+import {setScrollingItemMouseScroll, setScrollingItemPadding} from "../components/scrollContainer";
 import { createApp } from 'vue';
 import Vue3LottieApp from 'vue3-lottie'
 import vueHeadLottie from "@/vue/pages/index/head.vue";
@@ -17,6 +17,7 @@ class MainPage {
 
 		this.init();
 		this.burgerHandler(this.state.header.burger, document.body);
+		this.initScrollContainers();
 		this.vueComponents([vueHeadLottie, '#vue-head']);
 		this.vueComponents([vueLaunchMoreLottie, '#vue-launch-more']);
 		this.vueComponents([vueForm, '#vue-form-start']);
@@ -31,6 +32,17 @@ class MainPage {
 			element.addEventListener('click', (event) => {
 				body.classList.toggle('burger-menu--open')
 			});
+		});
+	}
+
+	initScrollContainers() {
+		document.addEventListener("DOMContentLoaded", function() {
+			setScrollingItemPadding();
+			setScrollingItemMouseScroll(1);
+		});
+
+		window.addEventListener("resize", function () {
+			setScrollingItemPadding();
 		});
 	}
 
