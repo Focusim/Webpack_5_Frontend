@@ -172,6 +172,10 @@
 				top: 0;
 				right: 0;
 				bottom: 0;
+
+				@media ($media-tablet) {
+					top: 10px; // fix link padding
+				}
 			}
 		}
 
