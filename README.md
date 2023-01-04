@@ -81,6 +81,11 @@
 		<td></td>
   </tr>
   <tr>
+    <td>TypeScript</td>
+    <td><a href="https://www.typescriptlang.org/">.org</a></td>
+		<td></td>
+  </tr>
+  <tr>
     <td>postcss-px-to-viewport</td>
     <td><a href="https://www.npmjs.com/package/postcss-px-to-viewport">Npm link</a></td>
 		<td></td>
@@ -136,6 +141,11 @@
 <br><br>
 <br><br>
 <br><br>
+
+
+
+
+
 
 
 
