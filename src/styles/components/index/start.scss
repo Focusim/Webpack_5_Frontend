@@ -17,6 +17,7 @@
 	&__inner {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		margin: 0 0 86px 0;
 	}
 
@@ -159,6 +160,7 @@
 
 	.form {
 		color: $color-white;
+		padding: 0 8px;
 
 		&__wrapper {
 			display: flex;
@@ -173,7 +175,7 @@
 		&__input-label {
 			position: relative;
 			display: flex;
-			padding: 0 0 13px 0;
+			padding: 0 0 14px 0;
 			border-bottom: 1px solid #D2D8DE;
 			margin: 0 0 25px 0;
 			cursor: pointer;
@@ -440,8 +442,10 @@
 		align-items: center;
 		border: 1px solid $color-light-gray-1;
 		border-radius: 20px;
-		padding: 5px 6px 5px 10px;
-		margin: -6px 10px -7px 0;
+		padding: 5px 4px 5px 10px;
+		margin: -2px 10px -7px 0;
+		height: 32px;
+		max-width: 28%;
 
 		&.flag--empty {
 			&:before {
@@ -452,6 +456,11 @@
 				letter-spacing: -0.02em;
 				text-align: left;
 				color: $color-dark;
+			}
+
+			.flag__input {
+				width: 14px;
+				min-width: 14px;
 			}
 		}
 
@@ -473,7 +482,9 @@
 		&__out-img {
 			display: inline-block;
 			height: 18px;
+			min-height: 18px;
 			width: 18px;
+			min-width: 18px;
 			border-radius: 50%;
 			background-repeat: no-repeat;
 			background-size: cover;

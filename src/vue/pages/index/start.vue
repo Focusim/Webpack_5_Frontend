@@ -201,12 +201,12 @@ export default {
 
 		searchCountry() {
 			this.phone.successSearch = false;
-			this.$refs.countryInput.style.width = ((this.phone.countryNum.length + 1) * 8) + 'px';
+			this.$refs.countryInput.style.width = this.widthInputHandler(this.$refs.countryInput.value.length);
 			this.phone.countryNum = this.phone.countryNum.replace(/\+/g, '');
 			let codeCountry = '';
 
 			for (let i = 1; i <= this.phone.countryNum.length; i++) {
-				let enumerationValue = this.phone.countryNum.substr(0, i);
+				let enumerationValue = this.phone.countryNum.substring(0, i);
 				let point = false;
 
 				for (let item of this.phone.countries.list) {
@@ -227,8 +227,20 @@ export default {
 			} else {
 				this.participant.phone = this.phone.countryNum.replace(codeCountry, '');
 				this.phone.countryNum = codeCountry;
-				this.$refs.countryInput.style.width = ((this.phone.countryNum.length + 1) * 8) + 'px';
+				this.$refs.countryInput.style.width = this.widthInputHandler(codeCountry.length);
 				this.phoneNextStep();
+			}
+		},
+
+		widthInputHandler(lengthString) {
+			console.log('vw')
+
+			if (lengthString > 1) {
+				if (window.innerWidth > 1280) return ((lengthString + 1) * 8) + 'px';
+				if (window.innerWidth > 768) return ((lengthString + 1) * 0.625) + 'vw';
+				if (window.innerWidth <= 768) return ((lengthString + 1) * 8) + 'px';
+			} else {
+				return '';
 			}
 		},
 
@@ -261,7 +273,7 @@ export default {
 
 					if (point) {
 						this.participant.phone = this.participant.phone.replace(`${this.phone.countryNum}`, '');
-						this.$refs.countryInput.style.width = ((this.phone.countryNum.length + 1) * 8) + 'px';
+						this.$refs.countryInput.style.width = this.widthInputHandler(this.phone.countryNum.length);
 						break;
 					}
 				}
