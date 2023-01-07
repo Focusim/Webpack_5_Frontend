@@ -1,3 +1,4 @@
+// SECTIONS:
 @import 'header';
 @import 'head';
 @import 'premium';
@@ -9,6 +10,7 @@
 @import 'start';
 @import 'footer';
 
+// PAGE STYLES:
 body {
 	content: 'this style page index';
 	background: $color-bright-gray;

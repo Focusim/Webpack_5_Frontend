@@ -6,6 +6,7 @@ import vueForm from "@/vue/pages/index/start.vue";
 import vueLaunchMoreLottie from "@/vue/pages/index/launch-more.vue";
 
 class MainPage {
+	
 	constructor() {
 
 		this.state = {
@@ -30,18 +31,18 @@ class MainPage {
 	burgerHandler(arrBurger, body) {
 		arrBurger.forEach(element => {
 			element.addEventListener('click', (event) => {
-				body.classList.toggle('burger-menu--open')
+				body.classList.toggle('burger-menu--open');
 			});
 		});
 	}
 
 	initScrollContainers() {
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", () => {
 			setScrollingItemPadding();
 			setScrollingItemMouseScroll(1);
 		});
 
-		window.addEventListener("resize", function () {
+		window.addEventListener("resize",  () => {
 			setScrollingItemPadding();
 		});
 	}

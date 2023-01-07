@@ -122,4 +122,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// styles in scss files //
 </style>
