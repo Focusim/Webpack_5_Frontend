@@ -12,7 +12,9 @@ block start
 				.person
 					.person__sign
 						p.person__sign-text #[span Ivan Borovikov,] <br>Founder of Mindbox
-					img.person__img(src="~@/img/index/start/ivan.jpg" alt="Ivan Borovikov")
+					picture
+						source( srcset="~@/img/index/start/ivan--tablet.jpg" media="(max-width: 768px)")
+						img.person__img(src="~@/img/index/start/ivan.jpg" alt="Ivan Borovikov")
 
 
 

@@ -19,16 +19,7 @@
 		display: flex;
 		overflow-x: auto;
 		position: relative;
-		column-gap: 100px;
 		scrollbar-width: none;
-
-		@media ($media-tablet) {
-			column-gap: 50px;
-		}
-
-		@media (max-width: 550px) {
-			column-gap: 40px;
-		}
 
 		& > * {
 			-webkit-user-select: none;
@@ -43,6 +34,18 @@
 
 		&::-webkit-scrollbar {
 			display: none;
+		}
+
+		& .cards__item:not(:last-child) {
+			margin-right: 100px;
+
+			@media ($media-tablet) {
+				margin-right: 50px;
+			}
+
+			@media (max-width: 550px) {
+				margin-right: 40px;
+			}
 		}
 
 		&__item {

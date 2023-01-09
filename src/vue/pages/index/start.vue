@@ -18,8 +18,8 @@
 						:class="{}"
 						type="text"
 						placeholder="John Doe"
-						@click="clearValidate"
-						@input="clearValidate"
+						@click="clearValidate()"
+						@input="clearValidate()"
 					)
 				label.form__input-label(data-error="Incorrect company, try again")
 					.form__input-description Company
@@ -30,8 +30,8 @@
 						:class="{}"
 						type="text"
 						placeholder="Website"
-						@click="clearValidate"
-						@input="clearValidate"
+						@click="clearValidate()"
+						@input="clearValidate()"
 					)
 				label.form__input-label(data-error="Incorrect email, try again")
 					.form__input-description Email
@@ -42,10 +42,11 @@
 						:class="{}"
 						type="email"
 						placeholder="example@gmail.com"
-						@click="clearValidate"
-						@input="clearValidate"
+						@click="clearValidate()"
+						@input="clearValidate()"
 					)
-				label.form__input-label(data-error="Incorrect phone, try again")
+				label.form__input-label(
+					data-error="Incorrect phone, try again")
 					.form__input-description Phone
 
 					.flag(:class="{'flag--empty': (phone.countryNum.length > 0)}")
@@ -54,41 +55,44 @@
 							placeholder="+1"
 							type="tel"
 							v-model="phone.countryNum"
-							@input="searchCountry"
+							@click="clearValidate()"
+							@input="clearValidate(); searchCountry();"
 						)
 						.flag__out-img(:style="{ 'background-image': 'url(/countries/images/' + phone.selected.icon + '.svg)' }")
 
 					input.form__input(
 						ref="phoneInput"
-						placeholder="phone"
+						placeholder=""
 						required="required"
 						type="tel"
 						v-model.trim="participant.phone"
 						name="phone"
-						@click="clearValidate"
+						@click="clearValidate()"
 						@input="clearValidate(); inputHandlerPhone();"
 						@keydown.delete="deleteHandlerPhone($event.target.value)"
 					)
 				label.form__input-label(data-error="Incorrect info, try again")
 					.form__input-description Info
-					input.form__input(
+					textarea.form__textarea(
 						required="required"
 						v-model.trim="participant.info"
-						:class="{}"
 						name="info"
+						rows="3"
 						placeholder="Tell a little bit more"
-						@click="clearValidate"
-						@input="clearValidate"
+						@click="clearValidate()"
+						@input="clearValidate(); textareaHandler($event.target);"
 					)
 
-				label.form__input-checkbox
-					input.form__input(
+				label.form__checkbox-label
+					input.form__checkbox-input(
 						name="checkbox"
+						v-model.trim="participant.checkbox"
 						required="required"
 						type="checkbox"
+						@input="clearValidate()"
 					)
-					.form__input-checkbox-item
-					.form__input-privacy-policy I&nbsp;confirm that I&rsquo;ve read and agree to&nbsp;the Privacy Policy and consent to&nbsp;my&nbsp;personal data being processed. I&nbsp;understand and agree that Mindbox may send me&nbsp;emails from time to&nbsp;time.
+					.form__checkbox-v-box
+					.form__privacy-policy I&nbsp;confirm that I&rsquo;ve read and agree to&nbsp;the Privacy Policy and consent to&nbsp;my&nbsp;personal data being processed. I&nbsp;understand and agree that Mindbox may send me&nbsp;emails from time to&nbsp;time.
 
 			.form__submit-label
 				input.form__submit(
@@ -110,7 +114,7 @@
 
 <script>
 import countries from "@/static/countries/list";
-import {logPlugin} from "@babel/preset-env/lib/debug";
+import axios from "axios";
 
 export default {
 	name: "start",
@@ -118,7 +122,7 @@ export default {
 		return {
 			regEmail: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,7})$/,
 			regSite: /^(\s{1,3})?((https?|ftp|smtp):\/\/)?(www.)?[a-zA-Zа-яА-Яё0-9_\-\.]+(\.[a-zA-Zа-яА-Яё]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?(\s{1,3})?$/,
-			regPhone: /^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$/im,
+			regPhone: null,
 			inputs: [],
 			participant: {
 			},
@@ -147,7 +151,7 @@ export default {
 	methods: {
 		setInputs() {
 			const form = this.$refs.form
-			form.querySelectorAll('input[required]').forEach(el => {
+			form.querySelectorAll('input[required], textarea[required]').forEach(el => {
 				this.inputs.push(el);
 			});
 		},
@@ -157,51 +161,65 @@ export default {
 
 			this.inputs.forEach(el => {
 
-				 if (el.getAttribute('name') === 'email') {
-					 if (!this.regEmail.test(el.value))   {
-						 el.parentElement.classList.add('error')
-						 errors.push('Error: ' + el.getAttribute('name'))
-					 } else {
-						 el.parentElement.classList.remove('error')
-					 }
-					 return false;
-				 }
+				if (el.getAttribute('name') === 'email') {
+					if (!this.regEmail.test(el.value)) {
+						el.parentElement.classList.add('error')
+						errors.push('Error: ' + el.getAttribute('name'))
+					} else {
+						el.parentElement.classList.remove('error')
+					}
+					return false;
+				}
 
-				 if (el.getAttribute('name') === 'company') {
-					 if (!this.regSite.test(el.value)) {
-						 el.parentElement.classList.add('error')
-						 errors.push('Error: ' + el.getAttribute('name'))
-					 } else {
-						 el.parentElement.classList.remove('error')
-					 }
-					 return false;
-				 }
+				if (el.getAttribute('name') === 'company') {
+					if (!this.regSite.test(el.value)) {
+						el.parentElement.classList.add('error')
+						errors.push('Error: ' + el.getAttribute('name'))
+					} else {
+						el.parentElement.classList.remove('error')
+					}
+					return false;
+				}
 
-				 if ( el.value.length < 1 || (el.getAttribute('name') === 'checkbox') && !el.checked) {
-					 el.parentElement.classList.add('error');
-					 errors.push('Error: ' + el.getAttribute('name'))
-					 return false;
-				 }
+				if (el.getAttribute('name') === 'phone') {
+					if (el.value.length < 1) {
+						el.parentElement.classList.add('error')
+						errors.push('Error: ' + el.getAttribute('name'))
+					} else {
+						el.parentElement.classList.remove('error')
+					}
+					return false;
+				}
+
+				if (el.value.length < 1 || (el.getAttribute('name') === 'checkbox') && !el.checked) {
+					el.parentElement.classList.add('error');
+					errors.push('Error: ' + el.getAttribute('name'))
+					return false;
+				}
 			});
 
 			if (errors.length === 0) return true;
 		},
 
 		clearValidate() {
-			event.target.parentElement.classList.remove('error');
-		},
+			let elem = event.target.parentElement;
 
-		submitHandler() {
-			this.status.success = this.checkValidate();
-		},
-
-		ajax() {
-
+			let i = 0;
+			while (i < 10) {
+				if (elem.tagName === 'LABEL') {
+					elem.classList.remove('error');
+					break;
+				} else if (elem.tagName === 'FORM') {
+					break;
+				} else {
+					elem = elem.parentElement;
+					i++;
+				}
+			}
 		},
 
 		searchCountry() {
 			this.phone.successSearch = false;
-			this.$refs.countryInput.style.width = this.widthInputHandler(this.$refs.countryInput.value.length);
 			this.phone.countryNum = this.phone.countryNum.replace(/\+/g, '');
 			let codeCountry = '';
 
@@ -227,14 +245,13 @@ export default {
 			} else {
 				this.participant.phone = this.phone.countryNum.replace(codeCountry, '');
 				this.phone.countryNum = codeCountry;
-				this.$refs.countryInput.style.width = this.widthInputHandler(codeCountry.length);
 				this.phoneNextStep();
 			}
+
+			this.$refs.countryInput.style.width = this.widthInputHandler(codeCountry.length);
 		},
 
 		widthInputHandler(lengthString) {
-			console.log('vw')
-
 			if (lengthString > 1) {
 				if (window.innerWidth > 1280) return ((lengthString + 1) * 8) + 'px';
 				if (window.innerWidth > 768) return ((lengthString + 1) * 0.625) + 'vw';
@@ -281,8 +298,54 @@ export default {
 			} else {
 				//
 			}
-		}
+		},
+
+		textareaHandler(elem) {
+			elem.style.height = "auto";
+			let scrollHeight = elem.scrollHeight;
+			elem.style.height = scrollHeight + 'px'
+
+			if (scrollHeight > 74) {
+				elem.style.maxHeight = 'none';
+			}
+
+			if (elem.value.length <= 0) {
+				elem.style.maxHeight = 74 + 'px';
+			}
+		},
+
+		submitHandler() {
+			this.status.success = this.checkValidate();
+		},
+
+		ajax() {
+			const url = 'https://mindbox.cloud';
+			const data = {
+				action: 'new-cloud',
+				fields: {
+					name: this.participant.name,
+					company: this.participant.company,
+					email: this.participant.email,
+					phone: this.phone.countryNum + this.participant.phone,
+					info: this.participant.info,
+					checkbox: this.participant.checkbox,
+				},
+			}
+
+			axios.post(url, data, {
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+				.then(res => res.data)
+				.then(data => {
+					if (data.status == 'Success') {
+						console.log('form sended')
+					}
+				})
+		},
 	},
+
 }
 </script>
 

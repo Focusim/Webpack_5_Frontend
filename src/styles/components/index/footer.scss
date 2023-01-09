@@ -44,20 +44,23 @@
 			display: flex;
 			flex-direction: row;
 			align-items: flex-start;
-			column-gap: 50px;
-
-			@media ($media-tablet) {
-				column-gap: 30px;
-			}
-
-			@media (max-width: 650px) {
-				column-gap: 15px;
-			}
 
 			@media (max-width: 600px) {
 				justify-content: start;
 				align-items: center;
 				flex-direction: column;
+			}
+
+			& .nav__item:not(:last-child) {
+				margin-right: 50px;
+
+				@media ($media-tablet) {
+					margin-right: 30px;
+				}
+
+				@media (max-width: 650px) {
+					margin-right: 15px;
+				}
 			}
 		}
 
