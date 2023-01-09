@@ -99,7 +99,7 @@
 					type="submit"
 					value="Talk to founder"
 					@click="submitHandler")
-				img.form__submit-arrow(src="~@/img/index/start/arrow.svg")
+				img.form__submit-arrow(src="~@/img/arrow.svg")
 			p.form__description We'll reach out to you within 24 hours
 
 	.success(v-if="status.success" :key="status.success")
@@ -109,7 +109,7 @@
 			.success__btn(
 				@click="status.success = false"
 			) Close
-			img.success__btn-close(src="~@/img/index/start/close.svg")
+				img.success__btn-close(src="~@/img/close.svg")
 </template>
 
 <script>
@@ -151,7 +151,7 @@ export default {
 	methods: {
 		setInputs() {
 			const form = this.$refs.form
-			form.querySelectorAll('input[required], textarea[required]').forEach(el => {
+			form.querySelectorAll('input[required]:not([type="submit"]), textarea[required]').forEach(el => {
 				this.inputs.push(el);
 			});
 		},

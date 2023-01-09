@@ -91,9 +91,12 @@
 			}
 
 			&:hover {
-				color: $color-white;
 				transition: color 0s;
 			}
+		}
+
+		&__item-link--active {
+			opacity: 0.3;
 		}
 	}
 }

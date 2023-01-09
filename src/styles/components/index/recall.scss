@@ -248,7 +248,14 @@
 			min-width: 338px;
 			border: 2px solid #5E6068;
 			border-radius: 8px;
-			padding: 25px 20px 23px 20px;
+			padding: 25px 18px 23px 18px;
+		}
+
+		&__inner {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
 		}
 
 		&__title {
@@ -263,6 +270,7 @@
 				font-size: 40px;
 				line-height: 40px;
 				letter-spacing: -0.02em;
+				margin: 0 0 30px 0;
 			}
 		}
 
@@ -277,29 +285,85 @@
 			@media ($media-tablet) {
 				font-size: 16px;
 				line-height: 24px;
+				max-width: 292px;
+				margin: 0 0 29px 0;
 			}
 		}
 
-		&__btn {
+		.btn {
+			position: relative;
 			font-size: 24px;
 			font-weight: 500;
 			line-height: 24px;
 			letter-spacing: -0.02em;
-			text-align: center;
-
+			color: $color-white;
+			cursor: pointer;
+			user-select: none;
+			white-space: nowrap;
 			display: flex;
+			flex-direction: row;
 			align-items: center;
 			justify-content: center;
-			width: 100%;
-			background: #39AA5D;
+			background: $color-el-green;
+			width: 312px;
+			height: 74px;
+			padding: 12px 0;
 			border-radius: 8px;
-			padding: 25px 0;
+			transition: all .5s;
 
 			@media ($media-tablet) {
 				font-size: 24px;
 				line-height: 24px;
+				width: 298px;
+				height: 74px;
+				padding: 12px 0;
 				border-radius: 8px;
-				padding: 25px 0;
+			}
+
+			&:hover {
+				background: $color-el-dark-green;
+				padding-right: 20px;
+
+				@media ($media-tablet) {
+					padding-right: 20px;
+				}
+
+				.btn__arrow {
+					transition: all .5s;
+					margin-right: 8px;
+					opacity: 1;
+					z-index: 1;
+					pointer-events: none;
+
+					@media ($media-tablet) {
+						margin-right: 8px;
+					}
+				}
+			}
+
+			&:active {
+				background-color: $color-el-green;
+				transition: background-color 0s;
+			}
+
+			&__arrow {
+				position: absolute;
+				top: 50%;
+				right: 47px;
+				transform: translateY(-50%);
+				width: 19px;
+				height: 16px;
+				transition: all .5s;
+				opacity: 0;
+				z-index: -1;
+				margin-right: 0;
+
+				@media ($media-tablet) {
+					right: 47px;
+					width: 19px;
+					height: 16px;
+					margin-right: 0;
+				}
 			}
 		}
 	}

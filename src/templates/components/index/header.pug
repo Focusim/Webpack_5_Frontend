@@ -4,22 +4,22 @@ header.header
 			.burger(data-burger-btn)
 				img(src="~@/img/burger.svg")
 			a.logo(href="/")
-				img.delete(src="~@/img/new-year.svg")
 				img(src="~@/img/logo_mindbox-black.svg")
 			nav.nav
 				ul.nav__list
 					li.nav__item.nav__item--close(data-burger-btn)
 						img(src="~@/img/burger-close.svg")
 					li.nav__item
-						a.nav__item-link.nav__item-link--active(href="#" aria-label="Campaigns")
+						.nav__item-anchor( aria-label="Campaigns" data-anchor-link="campaigns")
 					li.nav__item
-						a.nav__item-link(href="#" aria-label="Roadmap")
+						.nav__item-anchor( aria-label="Roadmap" data-anchor-link="roadmap")
 					li.nav__item
-						a.nav__item-link(href="#" aria-label="Revenue")
+						.nav__item-anchor( aria-label="Revenue" data-anchor-link="revenue")
 					li.nav__item
-						a.nav__item-link(href="#" aria-label="Clients")
+						.nav__item-anchor( aria-label="Clients" data-anchor-link="clients")
 					li.nav__item
-						a.nav__item-link(href="#" aria-label="All-in-one")
+						.nav__item-anchor( aria-label="All-in-one" data-anchor-link="all-in-one")
 					li.nav__item
-						a.nav__item-link(href="#" aria-label="Launch in USA")
-			a.btn(href="#anchor-start") Talk to founder
+						.nav__item-anchor( aria-label="Launch in USA" data-anchor-link="launch-in-usa")
+			.btn(data-anchor-link="launch-in-usa") Talk to founder
+				img.btn__arrow(src="~@/img/arrow.svg")

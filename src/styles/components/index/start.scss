@@ -628,12 +628,12 @@
 
 				.form__submit-arrow {
 					transition: all .5s;
-					margin-right: 20px;
 					opacity: 1;
 					z-index: 1;
+					transform: translate(calc(158px / 2), -50%);
 
 					@media ($media-tablet) {
-						margin-right: 20px;
+						transform: translate(calc(158px / 2), -50%);
 					}
 				}
 			}
@@ -662,54 +662,36 @@
 			}
 
 			&:hover {
-				padding-right: 40px;
+				padding-right: 26px;
 
 				@media ($media-tablet) {
-					padding-right: 40px;
+					padding-right: 26px;
 				}
 			}
 
-			&:after {
-				content: attr(data-error);
-				position: absolute;
-				left: 0;
-				bottom: -23px;
-				width: 50px;
-				height: 50px;
-				font-size: 12px;
-				font-weight: 400;
-				line-height: 16px;
-				letter-spacing: -0.01em;
-				text-align: left;
-				color: $color-error;
-
-				@media ($media-tablet) {
-					left: 0;
-					bottom: -23px;
-					width: 50px;
-					height: 50px;
-					font-size: 12px;
-					line-height: 16px;
-				}
+			&:active {
+				background-color: $color-dark-blue-3;
+				transition: background-color 0s;
 			}
 		}
 
 		&__submit-arrow {
 			position: absolute;
-			right: 105px;
+			left: 50%;
 			top: 50%;
-			transform: translateY(-50%);
+			transform: translate(calc(182px / 2), -50%); // width text + padding from text / 2
 			height: 16px;
 			width: 19px;
 			transition: all .5s;
 			opacity: 0;
 			pointer-events: none;
+			margin-right: -8px;
 
 			@media ($media-tablet) {
-				right: 105px;
-				top: 50%;
+				transform: translate(calc(182px / 2), -50%);
 				height: 16px;
 				width: 19px;
+				margin-right: -8px;
 			}
 		}
 
@@ -833,35 +815,39 @@
 			}
 
 			&:hover {
-				padding-right: 40px;
+				background: $color-dark-blue-0;
+				padding-right: 26px;
 
 				@media ($media-tablet) {
-					padding-right: 40px;
+					padding-right: 26px;
 				}
-			}
-
-			&:hover {
-				background: $color-dark-blue-0;
 
 				.success__btn-close {
 					transition: all .5s;
-					margin-right: 20px;
+					margin-right: 17px;
 					opacity: 1;
 					z-index: 1;
 					pointer-events: none;
+					transform: translate(calc(59px / 2), -50%);
 
 					@media ($media-tablet) {
-						margin-right: 20px;
+						margin-right: 17px;
+						transform: translate(calc(59px / 2), -50%);
 					}
 				}
+			}
+
+			&:active {
+				background-color: $color-dark-blue-3;
+				transition: background-color 0s;
 			}
 		}
 
 		&__btn-close {
 			position: absolute;
-			right: 105px;
+			left: 50%;
 			top: 50%;
-			transform: translateY(-50%);
+			transform: translate(calc(83px / 2), -50%); // width text + padding from text / 2
 			height: 24px;
 			width: 24px;
 			transition: all .5s;
@@ -869,7 +855,7 @@
 			z-index: -1;
 
 			@media ($media-tablet) {
-				right: 105px;
+				transform: translate(calc(83px / 2), -50%); // width text + padding from text / 2
 				height: 24px;
 				width: 24px;
 			}
