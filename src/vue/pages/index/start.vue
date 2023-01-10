@@ -74,13 +74,11 @@
 				label.form__input-label(data-error="Incorrect info, try again")
 					.form__input-description Info
 					textarea.form__textarea(
-						required="required"
 						v-model.trim="participant.info"
 						name="info"
 						rows="3"
 						placeholder="Tell a little bit more"
-						@click="clearValidate()"
-						@input="clearValidate(); textareaHandler($event.target);"
+						@input="textareaHandler($event.target);"
 					)
 
 				label.form__checkbox-label
