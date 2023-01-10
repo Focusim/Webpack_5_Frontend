@@ -13,12 +13,21 @@ class MainPage {
 			header: {
 				selector: document.querySelector('header.header'),
 				burger: document.querySelectorAll('[data-burger-btn]'),
-				navAnchors: document.querySelectorAll('[data-anchor-link]')
 			},
 			anchors: {
-				items: document.querySelectorAll('[data-anchor]'),
+				nameAnchorLink: 'data-anchor-link',
+				nameActiveElem: 'nav__item-anchor--active',
+				nameAnchorSection: 'data-anchor',
+				linkElements: document.querySelectorAll('[data-anchor-link]'),
+				sections: document.querySelectorAll('[data-anchor]'),
 				length: document.querySelectorAll('[data-anchor]').length,
 				list: [],
+				active: {
+					name: '',
+					topPoint: '',
+					botPoint: '',
+					firstSet: true,
+				}
 			},
 		}
 
@@ -28,9 +37,8 @@ class MainPage {
 		this.vueComponents([vueHeadLottie, '#vue-head']);
 		this.vueComponents([vueLaunchMoreLottie, '#vue-launch-more']);
 		this.vueComponents([vueForm, '#vue-form-start']);
-		this.initNavAnchors(this.state.header.navAnchors);
 		window.onload = () => {
-			this.initScrollAnchor(this.state.anchors.items)
+			this.initAnchors();
 		}
 	}
 
@@ -38,46 +46,63 @@ class MainPage {
 		console.log('init JS main page');
 	}
 
-	initScrollAnchor(arrAnchors) {
-		arrAnchors.forEach(item => { // set value
+	initAnchors() {
+		this.recalcAnchorValues();
+		this.scrollAnchorHandler();
+		this.initClickAnchorHandler(this.state.anchors.linkElements, this.state.anchors.length, this.state.anchors.list, this.state.anchors.nameAnchorLink);
+		window.addEventListener('scroll', this.scrollAnchorHandler.bind(this));
+		window.addEventListener('resize', this.recalcAnchorValues.bind(this));
+	}
 
+	recalcAnchorValues() {
+		this.state.anchors.list = [];
+
+		this.state.anchors.sections.forEach(section => { // set value
 			this.state.anchors.list.push({
-				name: item.getAttribute('data-anchor'),
-				topPoint: item.getBoundingClientRect().top + window.pageYOffset, // height header
-				botPoint: item.getBoundingClientRect().top + window.pageYOffset + item.getBoundingClientRect().height,
+				name: section.getAttribute(this.state.anchors.nameAnchorSection),
+				topPoint: section.getBoundingClientRect().top + window.pageYOffset,
+				botPoint: section.getBoundingClientRect().top + window.pageYOffset + section.getBoundingClientRect().height,
 			});
 		});
-
-		window.addEventListener('scroll', this.scrollAnchorHandler.bind(this));
-		this.scrollAnchorHandler();
 	}
 
 	scrollAnchorHandler() {
 		const winPos = window.pageYOffset;
 
-		for(let i = 0; i < this.state.anchors.length; i++) {
-			const section = this.state.anchors.list[i];
+		// fix unnecessary code triggering
+		if ((winPos <= this.state.anchors.active.topPoint || winPos >= this.state.anchors.active.botPoint) && this.state.anchors.active.firstSet) {
 
-			if (section.topPoint <= winPos && section.botPoint >= winPos) {
-				this.state.header.navAnchors.forEach(el => { el.classList.remove('nav__item-anchor--active'); }); // clear
-				this.state.header.navAnchors.forEach(item => { // set
-					if (item.getAttribute('data-anchor-link') === section.name) item.classList.add('nav__item-anchor--active');
-				});
+			for(let i = 0; i < this.state.anchors.length; i++) {
+				const unit = this.state.anchors.list[i];
 
-				break;
-			} else {
-				this.state.header.navAnchors.forEach(el => { el.classList.remove('nav__item-anchor--active'); });
+				if (unit.topPoint <= winPos && unit.botPoint >= winPos) {
+					this.state.anchors.linkElements.forEach(el => {  // set || clear
+						if (el.getAttribute(this.state.anchors.nameAnchorLink) === unit.name) { // set
+							el.classList.add(this.state.anchors.nameActiveElem);
+							this.state.anchors.active.name = el.getAttribute(this.state.anchors.nameAnchorLink);
+							this.state.anchors.active.topPoint = unit.topPoint;
+							this.state.anchors.active.botPoint = unit.botPoint;
+						} else { // clear
+							el.classList.remove(this.state.anchors.nameActiveElem);
+						}
+					});
+
+					break;
+				} else {
+					this.state.anchors.linkElements.forEach(el => { el.classList.remove(this.state.anchors.nameActiveElem); });
+				}
 			}
 		}
 	}
 
-	initNavAnchors(arrAnchors) {
-		arrAnchors.forEach((item, index, arr)=> {
+	initClickAnchorHandler(arrElems, lengthArr, listPositionEl, linkToName) {
+		arrElems.forEach((item, index, arr) => {
 			item.addEventListener('click', () => {
 
-				for(let i = 0; i < this.state.anchors.length; i++) {
-					const section = this.state.anchors.list[i];
-					if (section.name === item.getAttribute('data-anchor-link')) {
+				for(let i = 0; i < lengthArr; i++) {
+					const section = listPositionEl[i];
+
+					if (section.name === item.getAttribute(linkToName)) {
 						window.scrollTo({
 							top: section.topPoint + 1,
 							behavior: 'smooth'
@@ -85,9 +110,6 @@ class MainPage {
 						break;
 					}
 				}
-
-				//arr.forEach(el => { el.classList.remove('nav__item-anchor--active'); });
-				//item.classList.add('nav__item-anchor--active');
 			});
 		});
 	}
