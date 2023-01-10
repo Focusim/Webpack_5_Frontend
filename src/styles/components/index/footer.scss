@@ -35,6 +35,7 @@
 
 		@media (max-width: 600px) {
 			padding: 12px 0 8px 0;
+			margin-right: 5px;
 		}
 	}
 
@@ -60,6 +61,10 @@
 
 				@media (max-width: 650px) {
 					margin-right: 15px;
+				}
+
+				@media (max-width: 600px) {
+					margin-right: 0;
 				}
 			}
 		}
