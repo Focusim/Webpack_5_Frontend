@@ -79,9 +79,9 @@ export default {
 
 	methods: {
 		complete() {
-			this.nextSlide();
-			this.animChange();
-			this.scrollControllItem();
+			// this.nextSlide();
+			// this.animChange();
+			// this.scrollControllItem();
 		},
 
 		controllerChange(index) {
@@ -98,7 +98,7 @@ export default {
 			const padding = Number.parseInt(window.getComputedStyle(document.querySelector('.container')).paddingRight)
 
 			container.scrollBy({
-				left: posLeft - padding,
+				left: posLeft - padding - (((window.innerWidth - padding * 2) - 234) / 2),
 				behavior: 'smooth',
 			});
 		},
