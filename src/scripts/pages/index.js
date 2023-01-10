@@ -4,15 +4,19 @@ import Vue3LottieApp from 'vue3-lottie'
 import vueHeadLottie from "@/vue/pages/index/head.vue";
 import vueForm from "@/vue/pages/index/start.vue";
 import vueLaunchMoreLottie from "@/vue/pages/index/launch-more.vue";
+import App from '../main';
 
-class MainPage {
+class IndexPage extends App {
 
-	constructor() {
+	constructor(props) {
+		super(props);
 
 		this.state = {
 			header: {
 				selector: document.querySelector('header.header'),
 				burger: document.querySelectorAll('[data-burger-btn]'),
+				burgerName: 'js-burger',
+				navName: 'js-nav',
 			},
 			anchors: {
 				nameAnchorLink: 'data-anchor-link',
@@ -26,32 +30,43 @@ class MainPage {
 					name: '',
 					topPoint: '',
 					botPoint: '',
-					firstSet: true,
 				}
 			},
+			mediaSetting: {
+				tablet: 768,
+				mobile: 550,
+			}
 		}
 
-		this.init();
 		this.burgerHandler(this.state.header.burger, document.body);
 		this.initScrollContainers();
 		this.vueComponents([vueHeadLottie, '#vue-head']);
 		this.vueComponents([vueLaunchMoreLottie, '#vue-launch-more']);
 		this.vueComponents([vueForm, '#vue-form-start']);
-		window.onload = () => {
-			this.initAnchors();
-		}
+		this.initAnchors();
+		document.addEventListener('click', this.clickHandler.bind(this));
+		console.log('init JS index page');
 	}
 
-	init() {
-		console.log('init JS main page');
+	clickHandler(ev) {
+		this.sidebarMenuController(ev);
+	}
+
+	sidebarMenuController(ev) {
+		const menuSide = this.findParentHandler(ev.target, '.' + this.state.header.navName);
+		const burger = this.findParentHandler(ev.target, '.' + this.state.header.burgerName);
+		if (!menuSide && !burger) document.body.classList.remove('burger-menu--open');
 	}
 
 	initAnchors() {
 		this.recalcAnchorValues();
 		this.scrollAnchorHandler();
-		this.initClickAnchorHandler(this.state.anchors.linkElements, this.state.anchors.length, this.state.anchors.list, this.state.anchors.nameAnchorLink);
 		window.addEventListener('scroll', this.scrollAnchorHandler.bind(this));
 		window.addEventListener('resize', this.recalcAnchorValues.bind(this));
+		window.onload = () => { // recalculate after load page
+			this.recalcAnchorValues();
+			document.addEventListener('click', this.recalcAnchorValues.bind(this));
+		}
 	}
 
 	recalcAnchorValues() {
@@ -64,13 +79,15 @@ class MainPage {
 				botPoint: section.getBoundingClientRect().top + window.pageYOffset + section.getBoundingClientRect().height,
 			});
 		});
+
+		this.initClickAnchorHandler(this.state.anchors.linkElements, this.state.anchors.length, this.state.anchors.list, this.state.anchors.nameAnchorLink);
 	}
 
 	scrollAnchorHandler() {
 		const winPos = window.pageYOffset;
 
 		// fix unnecessary code triggering
-		if ((winPos <= this.state.anchors.active.topPoint || winPos >= this.state.anchors.active.botPoint) && this.state.anchors.active.firstSet) {
+		if (winPos <= this.state.anchors.active.topPoint || winPos >= this.state.anchors.active.botPoint) {
 
 			for(let i = 0; i < this.state.anchors.length; i++) {
 				const unit = this.state.anchors.list[i];
@@ -139,4 +156,4 @@ class MainPage {
 	}
 }
 
-new MainPage();
+new IndexPage();
